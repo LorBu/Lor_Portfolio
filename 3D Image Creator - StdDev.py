@@ -90,18 +90,21 @@ y2 = [int(i) for i in [i * gap for i in y1]]
 
 # set 3D projection and plot appearance details
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"}, figsize=(8, 5))
-ax.plot_surface(x, y, z, cmap='coolwarm', linewidth=20, antialiased=False)
+ax.plot_surface(x, y, z, cmap='coolwarm', linewidth=10, antialiased=False)
 ax.set_title('3D Surface Plot', fontsize=15)
 
-ax.set_xticks(x1, x2, fontsize=6, ha='left', color='blue')
-ax.set_yticks(y1, y2, fontsize=6, ha='left', color='purple')
-ax.tick_params(axis='x', pad=3)
-ax.tick_params(axis='y', pad=3)
+
+ax.set_xticks(x1[::100])
+ax.set_xticklabels([int(i) for i in x1[::100]])
+ax.set_yticks(y1[::50])
+ax.set_yticklabels([int(i) for i in y1[::50]])
+ax.tick_params(axis='both', labelsize=8)
 ax.tick_params(axis='z', which='major', labelsize=8)
 
 ax.set_xlabel('X [pixels]', fontsize=10)
 ax.set_ylabel('Y [pixels]')
 ax.set_zlabel('Height [μm]')
+
 plt.show()
 
 
