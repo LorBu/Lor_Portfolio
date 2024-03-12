@@ -1,4 +1,4 @@
-## Project Overview
+Project Overview
 This project aims to generate a three-dimensional (3D) image from a series of photographs capturing the testing material with slight variations in focus, typically ranging from 20 to 50 micrometers. The primary focus of this project is on image processing using Python programming to adjust the images and produce a final 3D plot illustrating the numerical dimensions of the 3D image plane.
 
 Optical Engineering Aspect
