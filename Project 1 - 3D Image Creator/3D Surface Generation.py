@@ -6,26 +6,29 @@ import glob
 from mpl_toolkits.mplot3d import Axes3D
 from scipy import ndimage
 
+# THESE LINES OF CODE NEEDS AN ARRAY OF SPECIFIC CAPTURED PICTURES TO WORK. 
+# I CANNOT UPLOAD THEM BUT FEEL FREE TO ASK FOR MORE INFO AND PICTURE SAMPLES
+
 # this program takes a bunch of pictures with varying focus and makes a 3D Plot of the most in-focus pixels of the images array
 # then it saves a file with the data in grayscale to use as you like
 # ATTENTION: the z axis is in pictures order but after the extraction of the file it reads them as grayscale level. you should keep it in mind...
 
 
 # read the images in .bmp format at this directory and makes them a list
-images = [cv2.imread(image, 0) for image in glob.glob(r"D:\Users\Lor Studio\Desktop\Archive\Mina\Lor MSc\Lab\Lab\22_11_21 (the best rusty)\rustyball\*.bmp")]
+images = [cv2.imread(image, 0) for image in glob.glob(r"D:\Sample_Images\*.bmp")]
 y = images[0].shape[0]  # y axis length
 x = images[0].shape[1]  # x axis length
 
-fft = input(print("Do you want Butterworth filter to your images:"))
+fft = input(print("Do you want Butterworth highpass filter to your images:"))
 fft.lower()
 
 if fft == "yes":
-    F1 = np.fft.fft2(images)  # fourier image
-    F2 = np.fft.fftshift(F1)  # low freq in the center
+    F1 = np.fft.fft2(images)  # fourier image transformation
+    F2 = np.fft.fftshift(F1)  # shift the low freq in the center
     print(F2.shape)
 
     h = np.zeros((y, x), )  # filter map
-    d0 = 80                 # filter size
+    d0 = 80                 # filter size (adjust accordingly)
 
     # making of filter map
     for u in range(y):
@@ -34,19 +37,19 @@ if fft == "yes":
             h[u, v] = 1-(1/(1+((d/d0)**4)))
 
 
-    # filtered image
-    Fhighpass = [i * h for i in F2]
+   
+    Fhighpass = [i * h for i in F2]      # filtered image
 
-    G1 = np.fft.ifftshift(Fhighpass)     # high freq in the center
+    G1 = np.fft.ifftshift(Fhighpass)     # shift high freq in the center
     G2 = np.fft.ifft2(G1)                # real image from fourier transformation
 
     array = np.array(G2)                 # takes the list and turns it into an array
     image_arr = np.array(array)          # takes each item of the array and turns it into array, shortly pixels
     stack = np.stack(image_arr)          # takes each pixelated array and stacks it in 3rd dimension
 
-print(stack.shape)                       # here we can check if the matrix dimension is what we aimed for (z,y,x)
+print(stack.shape)                       # checking if the matrix dimension is what we aimed for (z,y,x)
 
-# I choose how many squared pixels will be added for the algorithm
+# choose how many squared pixels will be added for the algorithm
 gap = 5
 gap2 = 10
 threshold = 0
@@ -54,7 +57,7 @@ threshold = 0
 # create a standard deviation map, the size of our stack with zero values
 std_map = np.zeros((int(stack.shape[0]), int(stack.shape[1] / gap), int(stack.shape[2] / gap)))
 
-# I extract values for the std_map and name them
+# extract values for the std_map and map them
 for i in range(gap2, 1200, gap):
     for j in range(gap2, 1920, gap):
         for k in range(int(stack.shape[0])):
@@ -65,6 +68,7 @@ for i in range(gap2, 1200, gap):
             std_map[k, a, b] = std
 
             # If the standard deviation is below the threshold, select the first image in an image array
+            # this way we eliminate the noise from our 3D plot
             if std_map[k, a, b] < threshold:
                  std_map[k, a, b] = std_map[0, a, b] - 0.000001*k
             else:
@@ -75,7 +79,7 @@ prof = np.nanargmax(std_map, 0)            # returns the maximum index of z axis
 print(prof.shape)
 print(prof)
 
-
+# Visualization
 # set x y z values
 x1 = np.linspace(0, prof.shape[1], prof.shape[1])
 y1 = np.linspace(0, prof.shape[0], prof.shape[0])
@@ -107,8 +111,8 @@ ax.set_zlabel('Height [μm]')
 
 plt.show()
 
-
+# Save the data exported into a file
 if fft == "yes":
-    np.savetxt("3D_StdDev_slope_3 [" + str(gap) + "]-[" + str(gap2) + "], B[" + str(d0) + "], T[" + str(threshold) + "].txt", prof)
+    np.savetxt("3D_StdDev_Image [" + str(gap) + "]-[" + str(gap2) + "], B[" + str(d0) + "], T[" + str(threshold) + "].txt", prof)
 else:
-    np.savetxt("3D_StdDev_fixed_tissue1 [" + str(gap) + "]-[" + str(gap2) + "].txt", prof)
+    np.savetxt("3D_StdDev_Image [" + str(gap) + "]-[" + str(gap2) + "].txt", prof)
