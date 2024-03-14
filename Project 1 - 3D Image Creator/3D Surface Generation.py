@@ -8,10 +8,10 @@ from scipy import ndimage
 
 # this program takes a bunch of pictures with varying focus and makes a 3D Plot of the most in-focus pixels of the images array
 # then it saves a file with the data in grayscale to use as you like
-# ATTENTION: the z axis is in pictures order but after the extraction of the file it reads them as grayscale level. you should keep it in mind
+# ATTENTION: the z axis is in pictures order but after the extraction of the file it reads them as grayscale level. you should keep it in mind...
 
 
-# reads the images in .bmp format at this directory and makes them a list
+# read the images in .bmp format at this directory and makes them a list
 images = [cv2.imread(image, 0) for image in glob.glob(r"D:\Users\Lor Studio\Desktop\Archive\Mina\Lor MSc\Lab\Lab\22_11_21 (the best rusty)\rustyball\*.bmp")]
 y = images[0].shape[0]  # y axis length
 x = images[0].shape[1]  # x axis length
