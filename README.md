@@ -5,7 +5,27 @@
 
 *This portfolio is always growing, so keep coming back to see what's new.* 🚀📊
 
-## [Project 1: 3D Image - Surface Generation 🗺️](https://github.com/LorBu/Lor_Portfolio/tree/main/3D%20Image%20-%20Surface%20Generation)
+## [Project 1: Yelp Reviews - NLP Project 💬](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Yelp%20Reviews%20-%20NLP%20Project)
+
+* **Objective**: Develop a classification model to accurately predict the rating corresponding to Yelp reviews.
+
+* **Data**: Utilize the Yelp review dataset containing textual content, star ratings, and engagement metrics such as 'cool', 'useful', and 'funny' votes.
+
+* **Approach**:
+  * Conduct data exploration to understand the dataset's structure and characteristics.
+  * Analyze the relationship between review length and star ratings.
+  * Extract features from text data using CountVectorizer.
+  * Train a Multinomial Naive Bayes classifier for rating prediction.
+
+* **Subset Analysis**: Focus on extreme ratings (1-star and 5-star) for further evaluation of model performance within this subset.
+
+* **TF-IDF Transformation**: Incorporate TF-IDF into the classification pipeline to weigh the importance of words and potentially improve feature representation.
+
+* **Insight**: The model's performance varies significantly between extreme ratings, with higher accuracy in predicting extreme sentiments compared to ratings in between. This highlights the importance of fine-tuning the model for specific sentiment categories.
+
+
+
+## [Project 2: 3D Image - Surface Generation 🗺️](https://github.com/LorBu/Lor_Portfolio/tree/main/3D%20Image%20-%20Surface%20Generation)
 
 * **Objective**: Generates a 3D surface plot from a series of images with varying focus to visualize the surface profile of an object.
 
@@ -16,7 +36,7 @@
     * Offers an option to apply a Butterworth filter to the images for frequency domain processing.
 
 
-## [Project 2: Ecommerce Analysis 📱🌐](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Linear%20Regression%20Project)
+## [Project 3: Ecommerce Analysis 📱🌐](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Linear%20Regression%20Project)
 
 * **Objective:** Analyzes data from an Ecommerce company to determine focus on mobile app or website improvement.
 * **Approach:**
@@ -29,7 +49,7 @@
   * Recommends strategic decisions based on model analysis.
 
 
-## [Project 3: Ads Engagement -Logistic Regrettion 🖱️](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Logistic%20Regression%20Project)
+## [Project 4: Ads Engagement -Logistic Regrettion 🖱️](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Logistic%20Regression%20Project)
 
 * **Objective:** Aims to predict ad engagement using a fabricated advertising dataset and develop a logistic regression model for accurate forecasting.
 
@@ -45,7 +65,7 @@
   * Concludes that internet usage, age, and time spent on the site are pivotal factors influencing ad clicking behavior.
 
 
-## [Project 4: Iris Flower Data Set - SVM 🌺](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Support%20Vector%20Machines)
+## [Project 5: Iris Flower Data Set - SVM 🌺](https://github.com/LorBu/Lor_Portfolio/tree/main/Machine%20Learning/Support%20Vector%20Machines)
 
 * **Objective:** Apply Support Vector Machines (SVM) on Fisher's Iris dataset to classify Iris species based on their characteristics.
   
@@ -55,7 +75,7 @@
   * Model evaluation and performance analysis through confusion matrices and classification reports.
   * Parameter tuning using GridSearchCV to optimize the SVM model.
 
-## [Project 5: Liquor Sales Analysis 🍾](https://github.com/LorBu/Lor_Portfolio/tree/main/Liquor%20Sales%20Analysis)
+## [Project 6: Liquor Sales Analysis 🍾](https://github.com/LorBu/Lor_Portfolio/tree/main/Liquor%20Sales%20Analysis)
 
 * **Objective:** Analyze liquor sales data from Iowa, USA (2012-2020) to identify popular products.
 
